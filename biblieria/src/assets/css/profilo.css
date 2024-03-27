@@ -1,0 +1,20 @@
+.copertina{
+    height: 15em;
+    z-index: 10;
+}
+
+.w{
+    width: 12em;
+    cursor: pointer;
+}
+
+.cont {
+    height: 14rem;
+    width: 11em
+}
+
+.copertina:hover{
+    z-index: 0;
+    filter: brightness(40%);
+}
+
