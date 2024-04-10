@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "../api/axios";
 import useAuthContext from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 export default function Register() {
   const { register, errors } = useAuthContext();
@@ -20,15 +20,13 @@ export default function Register() {
     });
   };
   return (
-    <>
       <div
-        className="container w-50 position-absolute top-50 start-50 translate-middle bg-dark text-white p-5 rounded"
+        className="container-fluid w-75 bg-dark text-white rounded m-20 p-3 md:p-5"
         data-bs-theme="dark"
       >
         <div className="row">
-          <h2 className="text-center mb-5">Register</h2>
+          <h2 className="text-center mb-3">Register</h2>
           <form
-            className="w-75 position-relative top-0 start-50 translate-middle-x"
             onSubmit={handleRegister}
           >
             <div className="mb-3">
@@ -42,6 +40,7 @@ export default function Register() {
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 value={name}
+                autoFocus
                 onChange={(e) => setName(e.target.value)}
               />
               {errors.name && (
@@ -105,23 +104,16 @@ export default function Register() {
                 </div>
               )}
             </div>
-            {/* <div className="mb-3 form-check">
-              <input
-                type="checkbox"
-                name="check"
-                className="form-check-input"
-                id="exampleCheck1"
-              />
-              <label className="form-check-label" for="exampleCheck1">
-                Check me out
-              </label>
-            </div> */}
-            <button type="submit" className="btn btn-secondary">
-              Register
-            </button>
+            <div className="text-center">
+              <button type="submit" className="btn btn-secondary w-75 my-4">
+                Register
+              </button>
+            </div>
+            <div className="text-center">
+              Hai già un account? <Link to={'/login'} className="font-bold hover:text-gray-500">Accedi</Link>
+            </div>
           </form>
         </div>
       </div>
-    </>
   );
 }

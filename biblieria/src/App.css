@@ -1,4 +1,32 @@
 *{
     font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; 
+    user-select: none;
   }
   
+a{
+  color: white;
+}
+
+
+/* card libro */
+.card{
+  width: 8em;
+}
+.copertina{
+  height: 10em;
+  width: 8em;
+  object-fit: cover;
+  z-index: 10;
+}
+.copertina:hover{
+  z-index: 0;
+  filter: brightness(40%);
+}
+.w{
+  cursor: pointer;
+}
+
+/* paginazione */
+.page-link{
+  color: black;
+}

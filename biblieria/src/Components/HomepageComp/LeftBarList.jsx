@@ -1,7 +1,6 @@
-import React, { useEffect , useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllBooks } from '../../slice/bookSlice';
-import "../../assets/css/Categories.css"
 import { selezionaCategoria } from '../../slice/bookSlice';
 
 export default function LeftBarList( {categoria} ) {
@@ -16,16 +15,13 @@ export default function LeftBarList( {categoria} ) {
     /* console.log(categoria) */;
 
     return (
-        <>
-           
-            <li className={"list text-center "+ (categoriaSelezionata == categoria.id ? 'active' : '')}  key={categoria.id} >
-                <button className="flex gap-1 no-underline uppercase "  onClick={() => { dispatch(getAllBooks({category_id: categoria.id})); dispatch(selezionaCategoria(categoria.id)) }}>
+            <li className={"list "+ (categoriaSelezionata == categoria.id ? 'active' : '')}  key={categoria.id} >
+                <button className="text-left w-100 px-3 no-underline hover:bg-gray-300"  onClick={() => { dispatch(getAllBooks({category_id: categoria.id})); dispatch(selezionaCategoria(categoria.id)) }}>
                     <div className='flex justify-between'>
-                        <p className="pl-2 w-32 mr-5"> {categoria.name} </p> 
-                        <p className='testoSide text-sm font-light '>  {categoria.books.length} </p> 
+                        <p className=""> {categoria.name} </p> 
+                        <p className='text-sm font-light '>  ({categoria.books.length}) </p> 
                     </div>
                 </button>
             </li>
-        </>
     )
 }

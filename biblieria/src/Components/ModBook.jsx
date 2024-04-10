@@ -192,7 +192,7 @@ export default function ModBook() {
                     Chiudi
                   </button>
                   <button disabled={loading} type="submit" className="btn btn-success">
-                    {!loading ? 'Save' : 'Loading...' }
+                    {!loading ? 'Salva' : 'Loading...' }
                   </button>
                 </div>
               </form>

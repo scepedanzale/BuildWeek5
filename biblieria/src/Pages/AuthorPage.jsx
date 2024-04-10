@@ -23,23 +23,18 @@ export const AuthorPage = () => {
   return (
     <>
       <div className='mx-3'>
-      {/* {posts.length > 0 ?  */} 
       <Row>
-        <Col className="d-none d-md-block" md={{ span: 5 }} lg={2}>
+        <Col className="d-none d-lg-block" lg={2}>
          <LeftBarAuthors categories={author.categories}/>
         </Col>
-        <Col md={{ span: 7 }} lg={{ span: 8 }}>
-          {/* Componenti Main*/}
-          <AuthorDetail author={author}/> {/* qui dentro ci vorrà il fake carousel */}
+        <Col lg={7}>
+          <AuthorDetail author={author}/> 
            
         </Col>
-        <Col className="d-none d-md-block" lg={2} style={{ position: "relative" }}>
-          {/* Componenti Sidebar Destro*/}
+        <Col className="d-none d-lg-block" lg={3}>
           <MyFavorites />
-          
         </Col>
       </Row> 
-      {/* : <LoadingHomeComponent />}  */}
       </div>
       <Footer />
 

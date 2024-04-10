@@ -54,40 +54,33 @@ export default function BookDetailComponent() {
 
 
     return (
-        book.author ? <>
-            <div className="container bg-white rounded-2 p-5 mt-4 font-sans">
-                <div>
-                    {user && user.is_admin ?
-                        (
-                            <div>
-                                <button className='btn btn-light w-75'>Elimina libro</button>
-                                <ModBook />
-                            </div>
-                        )
-                        :
-                        ('')
-                    }
-                </div>
+        book.author ? 
+        <>
+            <div className="container rounded-2 my-4 font-sans">
+                
                 <div className="row">
-                    <div className="col">
-                        <div className='border-1 border-light rounded-1'>
-                            <Image src={book.cover_url}></Image>
+                    <div className="col-12 flex justify-center align-items-center gap-2">
+                        <div className="col-6">
+                            <div>
+                                <Image src={book.cover_url} className='h-80 w-72 object-fit-cover'></Image>
+                            </div>
+                        </div>
+                        <div className="col-6 relative">
+                            {user && !user.is_admin &&
+                                <button onClick={() => handlePreferito()} className='absolute top-0 right-3 text-2xl'>
+                                    <i class="bi bi-heart"></i>
+                                </button>
+                            }
+
+                            <h1 className='fs-2'>{book.title}</h1>
+                            <h3 className='text-secondary'>
+                                <button className="flex no-underline" onClick={() => navigate(`/author/${book.author.id}`)}>
+                                    <span className="testoSide"> {book.author.full_name} </span>
+                                </button>
+                            </h3>
                         </div>
                     </div>
-                    <div className="col relative">
-
-                        <button onClick={() => handlePreferito()} className='absolute top-0 right-3'>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 hover:fill-red-500">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
-                            </svg>
-                        </button>
-
-                        <h1 className='uppercase fs-2'>{book.title}</h1>
-                        <h3 className='text-secondary'>
-                            <button className="flex no-underline" onClick={() => navigate(`/author/${book.author.id}`)}>
-                                <span className="testoSide"> {book.author.full_name} </span>
-                            </button>
-                        </h3>
+                    <div className='col'>
                         <div className='my-3'>
                             <p className='m-0'><b>Anno pubblicazione: </b> <span className='text-secondary'>{book.year}</span></p>
                             <p className='m-0'><b>Categoria: </b> <span className='text-secondary'>{book.category.name}</span></p>
@@ -95,30 +88,37 @@ export default function BookDetailComponent() {
                                 {copies ? copies : '0'}
                             </span></p> {/* come lo faccio aggiornare in tempo reale? */}
                         </div>
-                        <div className='my-4'>
-                            {book.abstract}
-                        </div>
+                        {book.abstract}
                     </div>
                 </div>
                 <div className="row text-center mt-3">
-                    <div className="col">
-                        {alreadyBooked ? <>
-                            <button className='btn btn-outline-danger w-25 mx-3' onClick={() => dispatch(cancelBooking(alreadyBooked.id))}>Disdici prestito</button>
+                    <div className="col my-4">
+                        {user && user.is_admin ?
+                        
+                        <div className='flex justify-center gap-3'>
+                            <button className='btn btn-dark w-75'>Elimina libro</button>
+                            <ModBook />
+                        </div>
+                        :
+                        
+                        alreadyBooked ? 
+                        <><button className='btn btn-outline-danger w-25 mx-3' onClick={() => dispatch(cancelBooking(alreadyBooked.id))}>Disdici prestito</button>
                             {alreadyExtended ?
-                                <button className='btn btn-outline-success w-25 mx-3 disabled' onClick={() => dispatch(extendBooking({ id: alreadyBooked.id, expDate: alreadyBooked.expiring_date }))}>Prestito già esteso</button> :
+                                <button className='btn btn-outline-success w-25 mx-3 disabled' onClick={() => dispatch(extendBooking({ id: alreadyBooked.id, expDate: alreadyBooked.expiring_date }))}>Prestito già esteso</button> 
+                                :
                                 <button className='btn btn-outline-success w-25 mx-3' onClick={() => dispatch(extendBooking({ id: alreadyBooked.id, expDate: alreadyBooked.expiring_date }))}>Estendi prestito</button>
 
                             }
                             <Alert variant='secondary' className='my-3'><p className='fw-semibold mb-2'>La richiesta di prestito è andata a buon fine!</p>  Il tuo prestito scadrà il: <span className='fw-semibold'>{alreadyBooked.expiring_date}</span></Alert>
-                        </> :
-                            <>
-                                {copies == 0 ?
-                                    <button className='btn btn-outline-dark w-50 disabled' >Attualmente non disponile</button>
-                                    :
-                                    <button className='btn btn-outline-dark w-50' onClick={() => dispatch(createBooking(book.id))}>Richiedi prestito</button>
-                                }
-
-                            </>
+                        </>
+                        :
+                        <>
+                            {copies == 0 ?
+                                <button className='btn btn-outline-dark w-50 disabled' >Attualmente non disponile</button>
+                                :
+                                <button className='btn btn-outline-dark w-50' onClick={() => dispatch(createBooking(book.id))}>Richiedi prestito</button>
+                            }
+                        </>
                         }
                     </div>
                 </div>

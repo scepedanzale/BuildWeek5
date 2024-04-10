@@ -1,4 +1,3 @@
-import "../assets/css/babyStyle.css";
 import biblio from "../assets/img/biblio.jpg";
 import React, { useState } from "react";
 import useAuthContext from "../context/AuthContext";
@@ -16,19 +15,13 @@ export default function Login() {
   };
 
   return (
-    <>
       <div
-        className="container w-75 position-absolute top-50 start-50 translate-middle bg-dark text-white p-5 rounded"
+        className="container-fluid w-75 bg-dark text-white rounded m-20 p-3 md:p-5"
         data-bs-theme="dark"
       >
         <div className="row">
-          <div className="col-4">
-            <img src={biblio} className="rounded" alt="" />
-          </div>
-          <div className="col-8">
-            <h2 className="text-center mb-5">Login</h2>
-            <form
-              className="w-75 position-relative top-0 start-50 translate-middle-x"
+          <h2 className="text-center mb-3">Login</h2>
+          <form
               onSubmit={handleLogin}
             >
               <div className="mb-3">
@@ -69,21 +62,24 @@ export default function Login() {
                   </div>
                 )}
               </div>
-              <div className="my-4 form-check">
+              <div className="form-check">
                 <Link
                   to={"/forgot-password"}
-                  className="text-decoration-none text-white"
+                  className="text-decoration-none hover:text-gray-500"
                 >
                   Forgot your password?
                 </Link>
               </div>
-              <button type="submit" className="btn btn-secondary">
-                Login
+              <div className="text-center">
+              <button type="submit" className="btn btn-secondary w-75 my-4">
+                Register
               </button>
+            </div>
+              <div className="text-center">
+                <Link to={'/register'} className="font-bold hover:text-gray-500">Crea un nuovo account</Link>
+              </div>
             </form>
-          </div>
         </div>
       </div>
-    </>
   );
 }

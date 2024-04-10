@@ -1,9 +1,7 @@
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Pagination from "react-bootstrap/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBooks } from "../../slice/bookSlice";
-
 
 export default function ComponentePaginazioneHome() {
 
@@ -11,7 +9,7 @@ export default function ComponentePaginazioneHome() {
   const pagineTotali = useSelector(state => state.libri.pagineTotali);
   const paginaCorrente = useSelector(state => state.libri.paginaCorrente);
   const categoriaSelezionata = useSelector(state => state.categorie.categoriaSelezionata);
-  const mostraPagine = 7;
+  const mostraPagine = 3;
   const handlePageClick = (pagina) => {
     window.scrollTo(0, 0);
     dispatch(getAllBooks({category: categoriaSelezionata, page: pagina}));

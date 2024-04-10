@@ -1,6 +1,4 @@
 import React from 'react'
-import "../assets/css/babyStyle.css"
-import Z from '../Components/Z'
 import { useNavigate } from 'react-router-dom'
 
 export default function NotFoundPage() {

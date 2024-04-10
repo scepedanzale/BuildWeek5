@@ -1,7 +1,5 @@
-import { Link } from 'react-router-dom'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { getCategorie } from '../../slice/categorySlice.js';
-import "../../assets/css/Categories.css"
 import { selezionaCategoria } from '../../slice/bookSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllBooks } from '../../slice/bookSlice';
@@ -23,21 +21,19 @@ export default function LeftBar() {
     },[categoriaSelezionata]) 
 
 return (
-    <>
-        <div className="navigation mt-4 rounded-md text-center">
-            <p className='uppercase font-sans font-semibold text-lg'> Categorie </p>
-            <ul className="uppercase font-sans font-semibold text-center">
-            <li className={"list text-center tastoNascosto hidden" + (!categoriaSelezionata ? 'active' : '')} >
-                <button className="flex gap-1 no-underline uppercase "  onClick={() => { dispatch(getAllBooks()); dispatch(selezionaCategoria(null)) }}>
-                    <span className="hidden testoSide hover:bg-transparent"> QUALSIASI </span>
-                </button>
-            </li>
+        <div className="mt-4 rounded-md text-center overflow-hidden">
+            <p className='font-sans text-lg bg-dark w-100 text-white py-2'> Categorie </p>
+            <ul className="font-sans text-center p-0">
+                <li className={"list text-center tastoNascosto hidden" + (!categoriaSelezionata ? 'active' : '')} >
+                    <button className="flex gap-1 no-underline uppercase "  onClick={() => { dispatch(getAllBooks()); dispatch(selezionaCategoria(null)) }}>
+                        <span className="hidden testoSide hover:bg-transparent"> QUALSIASI </span>
+                    </button>
+                </li>
                 { category.map((categoria, index) => (
                     <LeftBarList key={index} categoria={categoria} />
                 ))}
             </ul>
         </div>
-    </>
 )
 }
 

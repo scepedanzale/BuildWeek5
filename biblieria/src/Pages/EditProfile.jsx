@@ -11,6 +11,7 @@ export default function EditProfile() {
   const [profile_img, setProfileImg] = useState(user.profile_img);
   const [loadingUpdate, setLoadingUpdate] = useState(false);
   const [loadingDelete, setLoadingDelete] = useState(false);
+  const {logout} = useAuthContext();
 
   const navigate = useNavigate();
 
@@ -109,7 +110,7 @@ export default function EditProfile() {
             {!loadingUpdate ? "UPDATE" : "Loading..."}
           </button>
         </form>
-
+        <button className="btn btn-light" onClick={logout}>LOG OUT</button>
         <form
           onSubmit={deleteProfile}
           className="w-75 position-relative top-0 start-50 translate-middle-x"

@@ -16,22 +16,17 @@ export default function ProfilePage() {
   return (
     <>
       <div className='mx-3'>
-        {/* {posts.length > 0 ?  */} 
         <Row>
-          <Col className="d-none d-md-block" md={{ span: 5 }} lg={2}>
-          <ActiveBookings />
+          <Col className="d-none d-lg-block" lg={3}>
+            <ActiveBookings />
           </Col>
-          <Col md={{ span: 7 }} lg={{ span: 8 }}>
-            {/* Componenti Main*/}
+          <Col lg={6}>
             <ProfileDetail />
-            
           </Col>
-          <Col className="d-none d-md-block" lg={2} style={{ position: "relative" }}>
-            {/* Componenti Sidebar Destro*/}
+          <Col className="d-none d-lg-block" lg={3}>
             <ExpiredBookings />
           </Col>
         </Row> 
-        {/* : <LoadingHomeComponent />}  */}
       </div>
       <Footer />
       </>
